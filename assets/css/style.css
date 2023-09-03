@@ -1,0 +1,87 @@
+/* Reset some default browser styles */
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Center the container on the screen */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 600px;
+    width: 90%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Two-column layout */
+.form-column {
+    float: left;
+    width: 45%; /* Adjust the width as needed */
+    margin-right: 5%; /* Add some margin between columns */
+}
+
+/* Clearfix to prevent columns from collapsing */
+.form-column::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Style for form group */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Style for labels */
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Style for text inputs and select boxes */
+.form-group input[type="text"],
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style for the submit button */
+.form-group button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Hover effect for the submit button */
+.form-group button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer style */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Door Making App</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Door Making App</h1>
+        </header>
+        
+        <main>
+            <!-- Main screen with boxes for user options -->
+            <div class="options">
+                <!-- Add your options boxes here -->
+            </div>
+        
+            <!-- Form with two columns and rows -->
+            <form class="door-form">
+                <div class="form-columns">
+                    <!-- First Column -->
+                    <div class="form-column">
+                        <!-- Shape Type -->
+                        <div class="form-group">
+                            <label for="shapeType">Shape Type</label>
+                            <select id="shapeType" name="shapeType" required>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="rect_rect">Rectangle with rectangle top</option>
+                                <option value="rect_oval">Rectangle with oval top</option>
+                            </select>
+                        </div>
+
+                        <!-- Project Code -->
+                        <div class="form-group">
+                            <label for="projectCode">Project Code</label>
+                            <input type="text" id="projectCode" name="projectCode" placeholder="Enter project code" required>
+                        </div>
+                        
+                        <!-- Client Name -->
+                        <div class="form-group">
+                            <label for="clientName">Client Name</label>
+                            <input type="text" id="clientName" name="clientName" placeholder="Enter client name" required>
+                        </div>
+
+                        <!-- Location -->
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" name="location" placeholder="Enter location" required>
+                            <button type="button" id="getLocation">Get Current Location</button>
+                        </div>
+
+                        <!-- TASD Representative -->
+                        <div class="form-group">
+                            <label for="TASD_representative">TASD Representative</label>
+                            <input type="text" id="TASD_representative" name="TASD_representative" placeholder="Enter TASD representative" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Second Column -->
+                    <div class="form-column">
+                        <!-- Shape Type -->
+                        <div class="form-group">
+                            <label for="shapeType">Shape Type</label>
+                            <select id="shapeType" name="shapeType" required>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="rectangle_decor">Rectangle Decor</option>
+                                <option value="oval_decor">Oval Decor</option>
+                            </select>
+                        </div>
+        
+                        
+        
+                        <!-- Project Subtype -->
+                        <div class="form-group">
+                            <label for="projectSubtype">Project Subtype</label>
+                            <select id="projectSubtype" name="projectSubtype" required>
+                                <option value="BDM">BDM</option>
+                                <option value="CL">CL</option>
+                                <option value="FRL">FRL</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Additional form fields can be added here -->
+        
+                <!-- Submit Button -->
+                <div class="form-group">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </main>
+        
+        <footer>
+            <p>&copy; 2023 Door Making Company</p>
+        </footer>
+    </div>
+    <script>
+        // Function to handle geolocation
+        function getCurrentLocation() {
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    const locationField = document.getElementById('location');
+    
+                    // Set the location field with latitude and longitude
+                    locationField.value = `Latitude: ${latitude}, Longitude: ${longitude}`;
+                }, function (error) {
+                    console.error('Error getting location:', error.message);
+                });
+            } else {
+                alert('Geolocation is not supported in your browser.');
+            }
+        }
+    
+        // Add a click event listener to the "Get Current Location" button
+        document.getElementById('getLocation').addEventListener('click', getCurrentLocation);
+    </script>    
+</body>
+</html>
