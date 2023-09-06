@@ -73,6 +73,17 @@ h1 {
     font-weight: bold;
 }
 
+/* Add this CSS in your stylesheet or within a <style> tag in your HTML */
+.radio-group {
+    display: flex;
+    align-items: center;
+}
+
+.radio-label {
+    margin-right: 20px; /* Adjust the margin as needed */
+}
+
+
 /* Hover effect for the submit button */
 .form-group button:hover {
     background-color: #0056b3;

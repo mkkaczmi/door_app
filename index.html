@@ -12,87 +12,103 @@
             <h1>Door Making App</h1>
         </header>
         
-        <main>
-            <!-- Main screen with boxes for user options -->
-            <div class="options">
-                <!-- Add your options boxes here -->
-            </div>
-        
-            <!-- Form with two columns and rows -->
-            <form class="door-form">
-                <div class="form-columns">
-                    <!-- First Column -->
-                    <div class="form-column">
-                        <!-- Shape Type -->
-                        <div class="form-group">
-                            <label for="shapeType">Shape Type</label>
-                            <select id="shapeType" name="shapeType" required>
-                                <option value="rectangle">Rectangle</option>
-                                <option value="rect_rect">Rectangle with rectangle top</option>
-                                <option value="rect_oval">Rectangle with oval top</option>
-                            </select>
-                        </div>
+            <!-- Existing HTML code -->
+    <!-- ... -->
 
-                        <!-- Project Code -->
-                        <div class="form-group">
-                            <label for="projectCode">Project Code</label>
-                            <input type="text" id="projectCode" name="projectCode" placeholder="Enter project code" required>
-                        </div>
-                        
-                        <!-- Client Name -->
-                        <div class="form-group">
-                            <label for="clientName">Client Name</label>
-                            <input type="text" id="clientName" name="clientName" placeholder="Enter client name" required>
-                        </div>
-
-                        <!-- Location -->
-                        <div class="form-group">
-                            <label for="location">Location</label>
-                            <input type="text" id="location" name="location" placeholder="Enter location" required>
-                            <button type="button" id="getLocation">Get Current Location</button>
-                        </div>
-
-                        <!-- TASD Representative -->
-                        <div class="form-group">
-                            <label for="TASD_representative">TASD Representative</label>
-                            <input type="text" id="TASD_representative" name="TASD_representative" placeholder="Enter TASD representative" required>
-                        </div>
-                    </div>
-                    
-                    <!-- Second Column -->
-                    <div class="form-column">
-                        <!-- Shape Type -->
-                        <div class="form-group">
-                            <label for="shapeType">Shape Type</label>
-                            <select id="shapeType" name="shapeType" required>
-                                <option value="rectangle">Rectangle</option>
-                                <option value="rectangle_decor">Rectangle Decor</option>
-                                <option value="oval_decor">Oval Decor</option>
-                            </select>
-                        </div>
-        
-                        
-        
-                        <!-- Project Subtype -->
-                        <div class="form-group">
-                            <label for="projectSubtype">Project Subtype</label>
-                            <select id="projectSubtype" name="projectSubtype" required>
-                                <option value="BDM">BDM</option>
-                                <option value="CL">CL</option>
-                                <option value="FRL">FRL</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-        
-                <!-- Additional form fields can be added here -->
-        
-                <!-- Submit Button -->
+    <main>
+        <!-- Form with two columns and rows -->
+        <form class="door-form">
+            <!-- First Column -->
+            <div class="form-column">
+                
+                <!-- Shape type -->
                 <div class="form-group">
-                    <button type="submit">Submit</button>
+                    <!-- Shape Type (will be dynamically updated based on Project Type selection) -->
+                    <label for="shapeType">Shape Type</label>
+                    <select id="shapeType" name="shapeType" required>
+                        <option value="defaultShape">Select Project Type First</option>
+                    </select>
                 </div>
-            </form>
-        </main>
+
+                <!-- Project Code -->
+                <div class="form-group">
+                    <label for="projectCode">Project Code</label>
+                    <input type="text" id="projectCode" name="projectCode" placeholder="Enter project code" required>
+                </div>
+
+                <!-- Client Name -->
+                <div class="form-group">
+                    <label for="clientName">Client Name</label>
+                    <input type="text" id="clientName" name="clientName" placeholder="Enter client name" required>
+                </div>
+
+                <!-- Client Location -->
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" placeholder="Enter location" required>
+                    <button type="button" id="getLocation">Get Current Location</button>
+                </div>
+
+                <!-- TASD Representative -->
+                <div class="form-group">
+                    <label for="TASD_rep">TASD Representative</label>
+                    <input type="text" id="TASD_rep" name="TASD_rep" placeholder="TASD Representative" required>
+                </div>
+
+                <!-- Additional form fields in the first column -->
+                <!-- ... -->
+            </div>
+            <div class="form-column">
+                <!-- Second Column -->
+                
+                <!-- Project Type -->
+                <div class="form-group">
+                    <label for="projectType">Project type</label>
+                    <select id="projectType" name="projectType" required>
+                        <option value="BDM">BDM</option>
+                        <option value="BR">BR</option>
+                        <option value="CL">CL</option>
+                    </select>
+                </div>
+
+                <!-- Project Subtype -->
+                <div class="form-group">
+                    <label for="projectSubtype">Project subtype</label>
+                    <select id="projectSubtype" name="projectSubtype" required>
+                        <option value="to_do">TO DO</option>
+                    </select>
+                </div>
+
+                <!-- Expected installation date -->
+                <div class="form-group">
+                    <label for="expectedInstallation">Expected Installation Date</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" id="flexibleInstallation" name="expectedInstallation" value="flexible" required>
+                            Flexible
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" id="fixedInstallation" name="expectedInstallation" value="fixed" required>
+                            Fixed
+                        </label>
+                    </div>
+                    <input type="date" id="installationDate" name="installationDate" required>
+                </div>
+                
+                
+                
+                <!-- Additional form fields in the second column -->
+                <!-- ... -->
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </main>
+
+<!-- Existing HTML code -->
+<!-- ... -->
+
         
         <footer>
             <p>&copy; 2023 Door Making Company</p>
@@ -106,9 +122,17 @@
                     const latitude = position.coords.latitude;
                     const longitude = position.coords.longitude;
                     const locationField = document.getElementById('location');
-    
-                    // Set the location field with latitude and longitude
-                    locationField.value = `Latitude: ${latitude}, Longitude: ${longitude}`;
+
+                    // Reverse geocode the coordinates to get address details
+                    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+                        .then((response) => response.json())
+                        .then((data) => {
+                            const address = data.display_name;
+                            locationField.value = address;
+                        })
+                        .catch((error) => {
+                            console.error('Error getting location:', error.message);
+                        });
                 }, function (error) {
                     console.error('Error getting location:', error.message);
                 });
@@ -116,6 +140,31 @@
                 alert('Geolocation is not supported in your browser.');
             }
         }
+        // Function to dynamically update shape type options based on project type selection
+        document.getElementById('projectType').addEventListener('change', function () {
+            const shapeTypeSelect = document.getElementById('shapeType');
+            const projectType = this.value;
+
+            // Clear existing options
+            shapeTypeSelect.innerHTML = '';
+
+            // Add shape type options based on project type
+            switch (projectType) {
+                case 'BDM':
+                    shapeTypeSelect.innerHTML = '<option value="rectangle">Rectangle</option>';
+                    break;
+                case 'BR':
+                    shapeTypeSelect.innerHTML = '<option value="rectangle">Rectangle</option>' + '<option value="rectangle_oval">Rectangle with oval</option>';
+                    break;
+                case 'CL':
+                    shapeTypeSelect.innerHTML = '<option value="rectangle">Rectangle</option>' + '<option value="rectangle_oval">Rectangle with oval</option>' + '<option value="rectangle_rect">Rectangle with rectangle</option>';
+                    break;
+                default:
+                    // Default options for other project types
+                    break;
+            }
+        });
+        
     
         // Add a click event listener to the "Get Current Location" button
         document.getElementById('getLocation').addEventListener('click', getCurrentLocation);
