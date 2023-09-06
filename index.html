@@ -18,15 +18,6 @@
             <form class="door-form">
                 <!-- First Column -->
                 <div class="form-column">
-                    
-                    <!-- Shape type -->
-                    <div class="form-group">
-                        <!-- Shape Type (will be dynamically updated based on Project Type selection) -->
-                        <label for="shapeType">Shape Type</label>
-                        <select id="shapeType" name="shapeType" required>
-                            <option value="defaultShape">Select Project Type First</option>
-                        </select>
-                    </div>
 
                     <!-- Project Code -->
                     <div class="form-group">
@@ -78,6 +69,15 @@
                             <option value="to_do">TO DO</option>
                         </select>
                     </div>
+                                        
+                    <!-- Shape type -->
+                    <div class="form-group">
+                        <!-- Shape Type (will be dynamically updated based on Project Type selection) -->
+                        <label for="shapeType">Shape Type</label>
+                        <select id="shapeType" name="shapeType" required>
+                            <option value="defaultShape">Select Project Type First</option>
+                        </select>
+                    </div>
 
                     <!-- Expected installation date -->
                     <div class="form-group">
@@ -100,12 +100,10 @@
         </section>
 
         <div class="form-group">
-            <button type="reset">Clear the form</button>
+            <button type="reset" id="clearForm">Clear the form</button>
         </div>
 
         <!-- Photos Section -->
-
-        <!-- TODO fix photo options -->
         <section class="photos-section">
             <div class="photo-option">
                 <label for="photoOption">Add photo of the place</label>
@@ -121,8 +119,64 @@
                 <button id="takePhoto">Take New Photo</button>
             </div>
             <div class="photo-option">
-                <a href="#open-dimensioning-form">Click to open dimensioning form</a>
+                <a href="./dimensioning_form.html">Click to open dimensioning form</a>
             </div>
+        </section>
+
+
+        <!-- Second part -->
+        <section class="second-form">
+            <form class="door-form-second">
+                <!-- First Column -->
+                <div class="form-column">
+                    <!-- Handle Type -->
+                    <div class="form-group">
+                        <label for="handleType">Handle Type</label>
+                        <select id="handleType" name="handleType" required>
+                            <option value="latch">latch</option>
+                            <option value="b-2-b">b-2-b</option>
+                        </select>
+                    </div>
+
+                    <!-- Commercial? -->
+                    <div class="form-group">
+                        <label for="commercial">Commercial?</label>
+                        <select id="commercial" name="commercial" required>
+                            <option value="yes">yes</option>
+                            <option value="no">no</option>
+                        </select>
+                    </div>
+
+                    <!-- Color -->
+                    <div class="form-group">
+                        <label for="color">Doral coating (color)</label>
+                        <select id="color" name="color" required>
+                            <option value="TODO">TODO</option>
+                        </select>
+                    </div>
+
+                    <!-- Transome type -->
+                    <div class="form-group">
+                        <label for="transomeType">Transome Type</label>
+                        <select id="transomeType" name="transomeType" required>
+                            <option value="TODO">TODO</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- Second Column -->
+                <div class="form-column">    
+                    <!-- Decors -->
+                    <div class="form-group">
+                        <label for="decors">Decors</label>
+                        <select id="decors" name="decors" required>
+                            <option value="TODO">TODO</option>
+                        </select>
+                    </div>
+                
+                </div>
+            </form>
         </section>
 
         <footer>

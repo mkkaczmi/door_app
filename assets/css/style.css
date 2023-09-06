@@ -98,6 +98,30 @@ h1 {
     margin-right: 20px; /* Adjust the margin as needed */
 }
 
+
+/* Style for the second form section */
+.second-form {
+    background-color: #ECFBD4; /* Green color for the second form section */
+    padding: 20px; /* Adjust padding as needed */
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    width: 100%; /* Ensure elements fill the entire width */
+    margin-top: 20px; /* Add margin at the top of the section */
+}
+
+/* Style for form boxes in the second form section */
+.second-form .form-group {
+    background-color: #ECFBD4; /* Green color for form boxes in the second form section */
+    color: black; /* Text color */
+    padding: 10px; /* Adjust padding as needed */
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    width: 100%; /* Ensure elements fill the entire width */
+    margin-bottom: 10px; /* Add margin between elements */
+}
+
+
 /* Style for the Photos Section */
 .photos-section {
     background-color: #E4E7FF; /* Purple color */
