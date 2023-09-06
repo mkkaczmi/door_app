@@ -56,7 +56,7 @@
                     break;
             }})
         
-         // Get references to the elements
+        // Get references to the elements
         const photoOptionInput = document.getElementById('photoOption');
         const uploadPhotoButton = document.getElementById('uploadPhoto');
         const takePhotoButton = document.getElementById('takePhoto');
@@ -69,14 +69,11 @@
 
         // Handle the "Take New Photo" button click
         takePhotoButton.addEventListener('click', () => {
-            // Set the capture attribute to "camera" to open the device's camera app
-            photoOptionInput.setAttribute('capture', 'camera');
+            // Remove the 'capture' attribute to open the file dialog for selecting existing photos
+            photoOptionInput.removeAttribute('capture');
             
             // Trigger a click event on the hidden file input
             photoOptionInput.click();
-            
-            // Reset the capture attribute to "environment" for future uploads
-            photoOptionInput.setAttribute('capture', 'environment');
         });
 
         // Handle file input change (when a photo is selected)
