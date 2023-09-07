@@ -20,12 +20,6 @@
             <form class="door-form">
                 <!-- First Column -->
                 <div class="form-column">
-                    <!-- Project Code -->
-                    <div class="form-group">
-                        <label for="projectCode">Project Code</label>
-                        <input type="text" id="projectCode" name="projectCode" placeholder="Enter project code" required>
-                    </div>
-
                     <!-- Client Name -->
                     <div class="form-group">
                         <label for="clientName">Client Name</label>
@@ -35,22 +29,53 @@
                     <!-- Location Form -->
                     <div class="form-group">
                         <label for="location">Location</label>
-                        <input type="text" id="location" name="location" placeholder="Enter location" required>
                         <div class="button-group">
-                            <button type="button" id="clearLocation" class="clear-button">Clear</button>
+                            <button type="button" id="clearLocation" class="clear-button">Clear Location</button>
                             <button type="button" id="getLocation" class="location-button">Get Current Location</button>
                         </div>
                     </div>
 
+                    <!-- Separate text boxes for address components -->
+                    <div class="form-group">
+                        <label for="street">Street</label>
+                        <input type="text" id="street" name="street" placeholder="Street" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" placeholder="City" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">State/Province</label>
+                        <input type="text" id="state" name="state" placeholder="State/Province" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postalCode">Postal Code</label>
+                        <input type="text" id="postalCode" name="postalCode" placeholder="Postal Code" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" id="country" name="country" placeholder="Country" required>
+                    </div>
+                </div>
+
+                <!-- Second Column -->
+                <div class="form-column">
                     <!-- TASD Representative -->
                     <div class="form-group">
                         <label for="TASD_rep">TASD Representative</label>
                         <input type="text" id="TASD_rep" name="TASD_rep" placeholder="TASD Representative" required>
                     </div>
-                </div>
 
-                <!-- Second Column -->
-                <div class="form-column">    
+                    <!-- Project Code -->
+                    <div class="form-group">
+                        <label for="projectCode">Project Code</label>
+                        <input type="text" id="projectCode" name="projectCode" placeholder="Enter project code" required>
+                    </div>
+    
                     <!-- Project Type -->
                     <div class="form-group">
                         <label for="projectType">Project type</label>
@@ -82,11 +107,11 @@
                     <div class="form-group">
                         <label for="expectedInstallation">Expected Installation Date</label>
                         <div class="radio-group">
-                            <label class="radio-label">
+                            <label class="radio-label" style="font-weight:normal">
                                 <input type="radio" id="flexibleInstallation" name="expectedInstallation" value="flexible" required>
                                 Flexible
                             </label>
-                            <label class="radio-label">
+                            <label class="radio-label" style="font-weight:normal">
                                 <input type="radio" id="fixedInstallation" name="expectedInstallation" value="fixed" required>
                                 Fixed
                             </label>
@@ -105,13 +130,13 @@
         <section class="photos-section">
             <div class="photo-option">
                 <label for="photoOption"><b>Add photo of the place</b></label>
-                <input type="file" id="photoOption" accept="image/*" multiple>
+                <input type="file" id="photoOption" accept="image/*" capture="camera" multiple>
                 <div class="image-preview"></div>
             </div>
 
             <div class="photo-option">
                 <label for="photoOptionDimensions"><b>Add photo of the dimensions</b></label>
-                <input type="file" id="photoOptionDimensions" accept="image/*" multiple>
+                <input type="file" id="photoOptionDimensions" accept="image/*" capture="camera" multiple>
                 <div class="image-preview"></div>
             </div>
 
@@ -119,6 +144,7 @@
                 <a href="./dimensioning_form.html">Click to open dimensioning form</a>
             </div>
         </section>
+
 
         <!-- Second part -->
         <section class="second-form">
@@ -138,11 +164,11 @@
                     <div class="form-group">
                         <label for="commercial">Commercial (yes/no)</label>
                         <div class="radio-group">
-                            <label class="radio-label">
+                            <label class="radio-label" style="font-weight:normal">
                                 <input type="radio" id="yes" name="commercial" value="yes" required>
                                 yes
                             </label>
-                            <label class="radio-label">
+                            <label class="radio-label" style="font-weight:normal">
                                 <input type="radio" id="no" name="commercial" value="no" required>
                                 no
                             </label>
@@ -172,11 +198,11 @@
                     <div class="form-group">
                         <label for="panel-material">Panel material</label>
                         <div class="radio-group">
-                            <label class="radio-label">
+                            <label class="radio-label" style="font-weight:normal">
                                 <input type="radio" id="full" name="panel-material" value="full" required>
                                 full
                             </label>
-                            <label class="radio-label">
+                            <label class="radio-label" style="font-weight:normal">
                                 <input type="radio" id="one-side" name="panel-material" value="one-side" required>
                                 one side
                             </label>
@@ -196,11 +222,11 @@
                     <div class="form-group">
                         <label for="construction-works">Construction Works (yes/no)</label>
                         <div class="radio-group">
-                            <label class="radio-label">
+                            <label class="radio-label" style="font-weight:normal">
                                 <input type="radio" id="yes" name="construction-works" value="yes" required>
                                 yes
                             </label>
-                            <label class="radio-label">
+                            <label class="radio-label" style="font-weight:normal">
                                 <input type="radio" id="no" name="construction-works" value="no" required>
                                 no
                             </label>
@@ -234,7 +260,7 @@
                 <div class="form-column">
                     <!-- Pre-paid Amount -->
                     <div class="form-group">
-                        <label for="pre-paid-amount">pre-paid amount</label>
+                        <label for="pre-paid-amount">Pre-paid Amount</label>
                         <input type="number" id="pre-paid-amount" name="pre-paid-amount" placeholder="pre-paid amount">
                     </div>
                 </div>

@@ -7,14 +7,24 @@ function getCurrentLocation() {
         navigator.geolocation.getCurrentPosition(function (position) {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
-            const locationField = document.getElementById('location');
 
             // Reverse geocode the coordinates to get address details
             fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
                 .then((response) => response.json())
                 .then((data) => {
-                    const address = data.display_name;
-                    locationField.value = address;
+                    // Separate address components
+                    const addressComponents = data.address;
+
+                    // Set values for separate text boxes
+                    document.getElementById('street').value = addressComponents.road || '';
+                    document.getElementById('city').value = addressComponents.city || addressComponents.town || '';
+                    document.getElementById('state').value = addressComponents.state || '';
+                    document.getElementById('postalCode').value = addressComponents.postcode || '';
+                    document.getElementById('country').value = addressComponents.country || '';
+
+                    // Set the full address in the "location" input
+                    const fullAddress = data.display_name;
+                    document.getElementById('location').value = fullAddress;
                 })
                 .catch((error) => {
                     console.error('Error getting location:', error.message);
@@ -29,7 +39,12 @@ function getCurrentLocation() {
 
 // Clear Location button click event
 document.getElementById('clearLocation').addEventListener('click', function () {
-    document.getElementById('location').value = ''; // Clear the location input field
+    // Clear individual address component input fields
+    document.getElementById('street').value = '';
+    document.getElementById('city').value = '';
+    document.getElementById('state').value = '';
+    document.getElementById('postalCode').value = '';
+    document.getElementById('country').value = '';
 });
 
 // Function to clear the form
@@ -87,7 +102,7 @@ document.getElementById('projectType').addEventListener('change', function () {
 const photoOptionInputs = document.querySelectorAll('input[type="file"]');
 const imagePreviews = document.querySelectorAll('.image-preview');
 
-// Function to handle file input change (when photos are selected)
+// Function to handle file input change (when photos are selected or captured)
 function handleFileInput(event, previewContainer) {
     const selectedFiles = event.target.files;
     if (selectedFiles.length > 0) {
@@ -150,3 +165,4 @@ function closeLargerImage(overlay) {
         }, 200);
     }
 }
+

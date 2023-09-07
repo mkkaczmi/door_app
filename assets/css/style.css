@@ -54,6 +54,16 @@ h1 {
     margin-bottom: 10px;
 }
 
+/*Radio buttons (displayed vertically) */
+.form-group input[type="radio"] {
+    display: block; 
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
 /* Style for the clear button for first form*/
 .first-form .form-group button {
     background-color: #929DF4;
@@ -68,6 +78,7 @@ h1 {
 
 .first-form .clear-button {
     margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 /* Hover effect for the submit button */
@@ -222,7 +233,7 @@ h1 {
 
 /* Style for the clear button for third form*/
 .third-form .form-group button {
-    background-color: #ECF42E;
+    background-color: #F6FD55;
     color: black;
     padding: 10px;
     border: none;
