@@ -297,6 +297,42 @@ h1 {
     background-color: #E24444;
 }
 
+/* Style for the button container */
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style for the "Save as Draft" button */
+.draft-button {
+    background-color: #9e9e9e; /* Grey color */
+    color: white;
+    padding: 15px 0; /* Adjust vertical padding */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 45%; /* Adjust the width as needed */
+    font-size: 16px;
+}
+
+/* Style for the "Submit" button (green) */
+.submit-button {
+    background-color: #4CAF50; /* Green color */
+    color: white;
+    padding: 15px 0; /* Adjust vertical padding */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 45%; /* Adjust the width as needed */
+    font-size: 16px;
+}
+
+
+
+
+
 /* Footer style */
 footer {
     text-align: center;

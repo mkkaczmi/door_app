@@ -165,3 +165,58 @@ function closeLargerImage(overlay) {
         }, 200);
     }
 }
+
+// Function to convert form data to CSV format
+function convertFormDataToCSV(formData) {
+    const csvRows = [];
+
+    for (const pair of formData.entries()) {
+        csvRows.push(`${pair[0]}, ${pair[1]}`);
+    }
+
+    return csvRows.join('\n');
+}
+
+
+// Function to trigger CSV download
+function downloadCSV(csvData, fileName) {
+    const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    link.click();
+}
+
+// Save as Draft button click event
+document.getElementById('saveAsDraftButton').addEventListener('click', () => {
+    // Collect form data
+    const formData = new FormData(document.querySelector('.door-form'));
+    const csvData = convertFormDataToCSV(formData);
+
+    // Save as draft
+    downloadCSV(csvData, 'draft.csv');
+});
+
+// Submit button click event
+document.getElementById('submitButton').addEventListener('click', () => {
+    // Collect form data
+    const formData = new FormData(document.querySelector('.door-form'));
+
+    // Check if all required fields are filled
+    let isFormValid = true;
+    const requiredFields = ['clientName', 'street', 'city', 'state', 'postalCode', 'country', 'TASD_rep', 'projectCode', 'projectType', 'projectSubtype', 'shapeType', 'expectedInstallation', 'installationDate'];
+    
+    for (const field of requiredFields) {
+        if (!formData.get(field)) {
+            alert(`Please fill in the "${field}" field.`);
+            isFormValid = false;
+            break;
+        }
+    }
+
+    if (isFormValid) {
+        // Convert and save as final
+        const csvData = convertFormDataToCSV(formData);
+        downloadCSV(csvData, 'final.csv');
+    }
+});
