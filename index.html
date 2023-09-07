@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Door Making App</title>
     <link rel="stylesheet" href="./assets/css/style.css">
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
+ 
 </head>
 <body>
     <div class="container">
@@ -170,7 +171,53 @@
                 </div>
 
                 <!-- Second Column -->
-                <div class="form-column">    
+                <div class="form-column">
+
+                    <!-- Panel material -->
+                    <div class="form-group">
+                        <label for="panel-material">Panel material</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" id="full" name="panel-material" value="full" required>
+                                full
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" id="one-side" name="panel-material" value="one-side" required>
+                                one side
+                            </label>
+                        </div>
+                        <select id="panel-material" name="panel-material" required>
+                            <option value="TODO">TODO</option>
+                        </select>
+                    </div>
+
+                    <!-- Decors -->
+                    <div class="form-group">
+                        <label for="panel-material-second">Panel Material (second side)</label>
+                        <input type="text" id="panel-material-second" name="panel-material-second" placeholder="Panel Material (second side)">
+                    </div>
+                    
+                    <!-- Construction Works (yes/no) -->
+                    <div class="form-group">
+                        <label for="construction-works">Construction Works (yes/no)</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" id="yes" name="construction-works" value="yes" required>
+                                yes
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" id="no" name="construction-works" value="no" required>
+                                no
+                            </label>
+                        </div>
+                    </div>
+                
+                    <!-- Construction Works Description -->
+                    <div class="form-group">
+                        <label for="construction-works-description">Construction Works Description</label>
+                        <input type="text" id="construction-works-description" name="construction-works-description" placeholder="Construction Works Description">
+                    </div>
+
                     <!-- Decors -->
                     <div class="form-group">
                         <label for="decors">Decors</label>
@@ -182,10 +229,6 @@
                 </div>
             </form>
         </section>
-
-        <footer>
-            <p>&copy; 2023 Door Making Company</p>
-        </footer>
 
         <!-- JS script -->
         <script src="./assets/script/script.js"></script>
