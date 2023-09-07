@@ -102,7 +102,7 @@ document.getElementById('projectType').addEventListener('change', function () {
 const photoOptionInputs = document.querySelectorAll('input[type="file"]');
 const imagePreviews = document.querySelectorAll('.image-preview');
 
-// Function to handle file input change (when photos are selected or captured)
+// Function to handle file input change (when photos are selected)
 function handleFileInput(event, previewContainer) {
     const selectedFiles = event.target.files;
     if (selectedFiles.length > 0) {
@@ -165,4 +165,3 @@ function closeLargerImage(overlay) {
         }, 200);
     }
 }
-
