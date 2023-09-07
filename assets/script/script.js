@@ -66,30 +66,69 @@ document.getElementById('projectType').addEventListener('change', function () {
     }})
 
 // Get references to the elements
-const photoOptionInput = document.getElementById('photoOption');
-const uploadPhotoButton = document.getElementById('uploadPhoto');
-const takePhotoButton = document.getElementById('takePhoto');
+const photoOptionInputs = document.querySelectorAll('input[type="file"]');
+const imagePreviews = document.querySelectorAll('.image-preview');
 
-// Handle the "Upload Existing" button click
-uploadPhotoButton.addEventListener('click', () => {
-    // Trigger a click event on the hidden file input
-    photoOptionInput.click();
-});
+// Function to handle file input change (when photos are selected)
+function handleFileInput(event, previewContainer) {
+    const selectedFiles = event.target.files;
+    if (selectedFiles.length > 0) {
+        // Clear the previous previews
+        previewContainer.innerHTML = '';
 
-// Handle the "Take New Photo" button click
-takePhotoButton.addEventListener('click', () => {
-    // Remove the 'capture' attribute to open the file dialog for selecting existing photos
-    photoOptionInput.removeAttribute('capture');
-    
-    // Trigger a click event on the hidden file input
-    photoOptionInput.click();
-});
+        // Loop through selected files and create image previews
+        for (const file of selectedFiles) {
+            const image = document.createElement('img');
+            image.src = URL.createObjectURL(file);
+            image.classList.add('preview-image');
+            image.addEventListener('click', () => {
+                displayLargerImage(image.src);
+            });
 
-// Handle file input change (when a photo is selected)
-photoOptionInput.addEventListener('change', (event) => {
-    const selectedFile = event.target.files[0];
-    if (selectedFile) {
-        // Handle the selected file here, e.g., display it or upload it to the server
-        console.log(`Selected file: ${selectedFile.name}`);
+            previewContainer.appendChild(image);
+        }
     }
+}
+
+// Add change event listeners to file inputs
+photoOptionInputs.forEach((input, index) => {
+    input.addEventListener('change', (event) => {
+        handleFileInput(event, imagePreviews[index]);
+    });
 });
+
+// Function to display a larger image when clicked
+function displayLargerImage(imageSrc) {
+    const overlay = document.createElement('div');
+    overlay.classList.add('image-overlay');
+
+    const largerImage = document.createElement('img');
+    largerImage.src = imageSrc;
+    largerImage.classList.add('larger-image');
+
+    const closeButton = document.createElement('button');
+    closeButton.innerHTML = 'Close';
+    closeButton.classList.add('close-button');
+    closeButton.addEventListener('click', () => {
+        closeLargerImage(overlay);
+    });
+
+    overlay.appendChild(largerImage);
+    overlay.appendChild(closeButton);
+
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+        overlay.style.opacity = '1';
+    }, 10);
+}
+
+// Function to close the larger image
+function closeLargerImage(overlay) {
+    if (overlay) {
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+            overlay.remove();
+        }, 200);
+    }
+}
