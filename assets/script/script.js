@@ -39,7 +39,25 @@ function clearForm() {
 }
 
 // Add a click event listener to the "Clear the form" button
-document.getElementById('clearForm').addEventListener('click', clearForm);
+document.getElementById('clearFirstForm').addEventListener('click', clearForm);
+
+// Function to clear the second form
+function clearSecondForm() {
+    const doorFormSecond = document.querySelector('.door-form-second');
+    doorFormSecond.reset(); // Reset the second form
+}
+
+// Add a click event listener to the "Clear the second form" button
+document.getElementById('clearSecondForm').addEventListener('click', clearSecondForm);
+
+/// Function to clear the third form
+function clearThirdForm() {
+    const priceForm = document.querySelector('.door-form-third');
+    priceForm.reset(); // Reset the third form
+}
+
+// Add a click event listener to the "Clear the third form" button
+document.getElementById('clearThirdForm').addEventListener('click', clearThirdForm);
 
 // Function to dynamically update shape type options based on project type selection
 document.getElementById('projectType').addEventListener('change', function () {

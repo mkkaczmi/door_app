@@ -6,7 +6,8 @@
     <title>Door Making App</title>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
- 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
     <div class="container">
@@ -19,7 +20,6 @@
             <form class="door-form">
                 <!-- First Column -->
                 <div class="form-column">
-
                     <!-- Project Code -->
                     <div class="form-group">
                         <label for="projectCode">Project Code</label>
@@ -37,18 +37,16 @@
                         <label for="location">Location</label>
                         <input type="text" id="location" name="location" placeholder="Enter location" required>
                         <div class="button-group">
-                            <button type="button" id="clearLocation">Clear</button>
-                            <button type="button" id="getLocation">Get Current Location</button>
+                            <button type="button" id="clearLocation" class="clear-button">Clear</button>
+                            <button type="button" id="getLocation" class="location-button">Get Current Location</button>
                         </div>
                     </div>
-
 
                     <!-- TASD Representative -->
                     <div class="form-group">
                         <label for="TASD_rep">TASD Representative</label>
                         <input type="text" id="TASD_rep" name="TASD_rep" placeholder="TASD Representative" required>
                     </div>
-
                 </div>
 
                 <!-- Second Column -->
@@ -95,16 +93,15 @@
                         </div>
                         <input type="date" id="installationDate" name="installationDate" required>
                     </div>
-                
                 </div>
+
             </form>
+            <div class="form-group">
+                <button type="reset" id="clearFirstForm">Clear</button>
+            </div>
         </section>
 
-        <div class="form-group">
-            <button type="reset" id="clearForm">Clear the form</button>
-        </div>
-
-        <!-- Photos Section -->
+        <!-- Photos and Dimensions Section -->
         <section class="photos-section">
             <div class="photo-option">
                 <label for="photoOption"><b>Add photo of the place</b></label>
@@ -167,12 +164,10 @@
                             <option value="TODO">TODO</option>
                         </select>
                     </div>
-
                 </div>
 
                 <!-- Second Column -->
                 <div class="form-column">
-
                     <!-- Panel material -->
                     <div class="form-group">
                         <label for="panel-material">Panel material</label>
@@ -225,9 +220,36 @@
                             <option value="TODO">TODO</option>
                         </select>
                     </div>
-                
                 </div>
             </form>
+
+            <div class="form-group">
+                <button type="reset" id="clearSecondForm">Clear</button>
+            </div>
+        </section>
+
+        <!-- Second part -->
+        <section class="third-form">
+            <form class="door-form-third">
+                <div class="form-column">
+                    <!-- Pre-paid Amount -->
+                    <div class="form-group">
+                        <label for="pre-paid-amount">pre-paid amount</label>
+                        <input type="number" id="pre-paid-amount" name="pre-paid-amount" placeholder="pre-paid amount">
+                    </div>
+                </div>
+                <div class="form-column">
+                    <!-- Price Tag -->
+                    <div class="form-group">
+                        <label for="price-tag">Price Tag</label>
+                        <input type="number" id="price-tag" name="price-tag" placeholder="Price Tag">
+                    </div>
+                </div>
+            </form>
+
+            <div class="form-group">
+                <button type="reset" id="clearThirdForm">Clear</button>
+            </div>
         </section>
 
         <!-- JS script -->
