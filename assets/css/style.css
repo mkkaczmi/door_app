@@ -237,6 +237,55 @@ h1 {
     background-color: #C1C826;
 }
 
+/* Style for the install comments section */
+.install-comments {
+    background-color: #FFD1D1;
+    padding: 20px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.install-comments .form-group {
+    background-color: #FFD1D1;
+}
+
+/* Style for the installation comments form */
+.install-comments-form {
+    background-color: #FFD1D1;
+    color: black;
+    padding: 20px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* Style for the installation comments textarea */
+#installComments {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style for the clear button for installation comments */
+#clearInstallComments {
+    background-color: #FF6B6B;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Hover effect for the clear button */
+#clearInstallComments:hover {
+    background-color: #E24444;
+}
+
 /* Footer style */
 footer {
     text-align: center;
