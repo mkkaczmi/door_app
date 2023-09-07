@@ -106,23 +106,21 @@
         <!-- Photos Section -->
         <section class="photos-section">
             <div class="photo-option">
-                <label for="photoOption">Add photo of the place</label>
-                <input type="file" id="photoOption" accept="image/*" capture="environment" style="display: none;">
-                <button id="uploadPhoto">Upload Existing</button>
-                <button id="takePhoto">Take New Photo</button>
-            </div>            
-            
-            <div class="photo-option">
-                <label for="placeDimensionsUpload">Add photo of the dimensions</label>
-                <input type="file" id="photoOption" accept="image/*" capture="environment" style="display: none;">
-                <button id="uploadPhoto">Upload Existing</button>
-                <button id="takePhoto">Take New Photo</button>
+                <label for="photoOption"><b>Add photo of the place</b></label>
+                <input type="file" id="photoOption" accept="image/*" multiple>
+                <div class="image-preview"></div>
             </div>
+
+            <div class="photo-option">
+                <label for="photoOptionDimensions"><b>Add photo of the dimensions</b></label>
+                <input type="file" id="photoOptionDimensions" accept="image/*" multiple>
+                <div class="image-preview"></div>
+            </div>
+
             <div class="photo-option">
                 <a href="./dimensioning_form.html">Click to open dimensioning form</a>
             </div>
         </section>
-
 
         <!-- Second part -->
         <section class="second-form">
@@ -138,13 +136,19 @@
                         </select>
                     </div>
 
-                    <!-- Commercial? -->
+                    <!-- Commercial -->
                     <div class="form-group">
-                        <label for="commercial">Commercial?</label>
-                        <select id="commercial" name="commercial" required>
-                            <option value="yes">yes</option>
-                            <option value="no">no</option>
-                        </select>
+                        <label for="commercial">Commercial (yes/no)</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" id="yes" name="commercial" value="yes" required>
+                                yes
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" id="no" name="commercial" value="no" required>
+                                no
+                            </label>
+                        </div>
                     </div>
 
                     <!-- Color -->
