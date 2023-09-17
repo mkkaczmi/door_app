@@ -25,6 +25,18 @@
                         <label for="clientName">Client Name</label>
                         <input type="text" id="clientName" name="clientName" placeholder="Enter client name" required>
                     </div>
+                    
+                    <!-- Client Email -->
+                    <div class="form-group">
+                        <label for="clientName">Client Email</label>
+                        <input type="email" id="clientEmail" name="clientEmail" placeholder="Enter client email" required>
+                    </div>
+
+                    <!-- Client Phone -->
+                    <div class="form-group">
+                        <label for="clientPhone">Client Phone Number</label>
+                        <input type="text" id="clientPhone" name="clientPhone" placeholder="Enter client phone number" required>
+                    </div>
 
                     <!-- Location Form -->
                     <div class="form-group">
@@ -60,6 +72,23 @@
                         <label for="country">Country</label>
                         <input type="text" id="country" name="country" placeholder="Country" required>
                     </div>
+
+                    <!-- Expected installation date -->
+                    <div class="form-group">
+                        <label for="expectedInstallation">Expected Installation Date</label>
+                        <div class="radio-group">
+                            <label class="radio-label" style="font-weight:normal">
+                                <input type="radio" id="flexibleInstallation" name="expectedInstallation" value="flexible" required>
+                                Flexible
+                            </label>
+                            <label class="radio-label" style="font-weight:normal">
+                                <input type="radio" id="fixedInstallation" name="expectedInstallation" value="fixed" required>
+                                Fixed
+                            </label>
+                        </div>
+                        <input type="date" id="installationDate" name="installationDate" required>
+                    </div>
+
                 </div>
 
                 <!-- Second Column -->
@@ -80,9 +109,30 @@
                     <div class="form-group">
                         <label for="projectType">Project type</label>
                         <select id="projectType" name="projectType" required>
-                            <option value="BDM">BDM</option>
-                            <option value="BR">BR</option>
-                            <option value="CL">CL</option>
+                            <option value="" selected disabled hidden>choose project type</option>
+                            <option value="BD-M">BD-M - Barn Doors Modern</option>
+                            <option value="BD-M/R">BD-M/R - Barn Doors Modern/Rustic</option>
+                            <option value="BD-R">BD-R - Barn Doors Rustic</option>
+                            <option value="CL">CL - Closet</option>
+                            <option value="CLP">CLP - New PCL - Closet Partition</option>
+                            <option value="CPP">CPP - Customized Partition</option>
+                            <option value="FCH">FCH - French</option>
+                            <option value="FRL">FRL - Frame less type [new - 2023-02-19]</option>
+                            <option value="MIX">MIX - Mixed types</option>
+                            <option value="PIV">PIV - Pivot models</option>
+                            <option value="PKT">PKT - Pocket doors</option>
+                            <option value="SPP">SPP - Suspended partition</option>
+                            <option value="SWG">SWG - Swing</option>
+                            <option value="SWG-2STD">SWG-2std - Swing - both V. dorals STD</option>
+                            <option value="TLSC-BFLD">TLSC-BFLD - Telescope - BiFold</option>
+                            <option value="TLSCP">TLSCP - Telescope</option>
+                            <option value="TTBD">TTBD - Type to be discussed</option>
+                            <option value="WINDOW">WINDOW - Windows</option>
+                            <option value="WOOD">WOOD - Wood</option>
+                            <option value="XO">XO - Partition 1+1</option>
+                            <option value="XOOX">XOOX - Partition 2+2</option>
+                            <option value="XOX">XOX - 2 flix one slide</option>
+                            <option value="CUSTOM">CUSTOM - Non standard type</option>
                         </select>
                     </div>
 
@@ -90,33 +140,27 @@
                     <div class="form-group">
                         <label for="projectSubtype">Project subtype</label>
                         <select id="projectSubtype" name="projectSubtype" required>
-                            <option value="to_do">TO DO</option>
+                            <option value="" selected disabled hidden>choose project type first</option>
                         </select>
                     </div>
                                         
                     <!-- Shape type -->
                     <div class="form-group">
-                        <!-- Shape Type (will be dynamically updated based on Project Type selection) -->
                         <label for="shapeType">Shape Type</label>
-                        <select id="shapeType" name="shapeType" required>
-                            <option value="defaultShape">Select Project Type First</option>
-                        </select>
-                    </div>
-
-                    <!-- Expected installation date -->
-                    <div class="form-group">
-                        <label for="expectedInstallation">Expected Installation Date</label>
-                        <div class="radio-group">
-                            <label class="radio-label" style="font-weight:normal">
-                                <input type="radio" id="flexibleInstallation" name="expectedInstallation" value="flexible" required>
-                                Flexible
+                        <div class="image-options">
+                            <label class="image-option">
+                                <input type="radio" name="shapeType" value="rectangle" />
+                                <img src="./assets/img/shape_rect.png" alt="Rectangular" style="width:75px; height:auto;"/>
                             </label>
-                            <label class="radio-label" style="font-weight:normal">
-                                <input type="radio" id="fixedInstallation" name="expectedInstallation" value="fixed" required>
-                                Fixed
+                            <label class="image-option">
+                                <input type="radio" name="shapeType" value="rectangle_oval" />
+                                <img src="./assets/img/shape_rect_oval.png" alt="Rectangular with Oval Topping" style="width:75px; height:auto;"/>
+                            </label>
+                            <label class="image-option">
+                                <input type="radio" name="shapeType" value="rectangle_rect" />
+                                <img src="./assets/img/shape_rect_rect.png" alt="Rectangular with Rectangular Topping" style="width:75px; height:auto;"/>
                             </label>
                         </div>
-                        <input type="date" id="installationDate" name="installationDate" required>
                     </div>
                 </div>
 
@@ -154,8 +198,7 @@
                     <div class="form-group">
                         <label for="handleType">Handle Type</label>
                         <select id="handleType" name="handleType" required>
-                            <option value="latch">latch</option>
-                            <option value="b-2-b">b-2-b</option>
+                            <option value="" selected disabled hidden>choose project type first</option>
                         </select>
                     </div>
 
@@ -178,17 +221,10 @@
                     <div class="form-group">
                         <label for="color">Doral coating (color)</label>
                         <select id="color" name="color" required>
-                            <option value="TODO">TODO</option>
+                            <option value="" selected disabled hidden>choose project type first</option>
                         </select>
                     </div>
 
-                    <!-- Transome type -->
-                    <div class="form-group">
-                        <label for="transomeType">Transome Type</label>
-                        <select id="transomeType" name="transomeType" required>
-                            <option value="TODO">TODO</option>
-                        </select>
-                    </div>
                 </div>
 
                 <!-- Second Column -->
@@ -253,21 +289,21 @@
             </div>
         </section>
 
-        <!-- Second part -->
+        <!-- Price form -->
         <section class="third-form">
             <form class="door-form-third">
                 <div class="form-column">
                     <!-- Pre-paid Amount -->
                     <div class="form-group">
                         <label for="pre-paid-amount">Pre-paid Amount</label>
-                        <input type="number" id="pre-paid-amount" name="pre-paid-amount" placeholder="pre-paid amount">
+                        <input type="text" id="pre-paid-amount" name="pre-paid-amount" placeholder="pre-paid amount">
                     </div>
                 </div>
                 <div class="form-column">
                     <!-- Price Tag -->
                     <div class="form-group">
                         <label for="price-tag">Price Tag</label>
-                        <input type="number" id="price-tag" name="price-tag" placeholder="Price Tag">
+                        <input type="text" id="price-tag" name="price-tag" placeholder="Price Tag">
                     </div>
                 </div>
             </form>
@@ -292,14 +328,10 @@
         </section>
         
         <!-- Buttons Section -->
-<section class="buttons-section">
-    <button id="saveAsDraftButton" class="grey-button">Save as Draft</button>
-    <button id="submitButton" class="green-button">Submit</button>
-</section>
-
-        
-
-        
+    <section class="buttons-section">
+        <button id="saveAsDraftButton" class="grey-button">Save as Draft</button>
+        <button id="submitButton" class="green-button">Submit</button>
+    </section>
 
         <!-- JS script -->
         <script src="./assets/script/script.js"></script>

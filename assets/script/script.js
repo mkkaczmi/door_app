@@ -74,27 +74,90 @@ function clearThirdForm() {
 // Add a click event listener to the "Clear the third form" button
 document.getElementById('clearThirdForm').addEventListener('click', clearThirdForm);
 
-// Function to dynamically update shape type options based on project type selection
+// Function to dynamically update subtype options based on project type selection
 document.getElementById('projectType').addEventListener('change', function () {
-    const shapeTypeSelect = document.getElementById('shapeType');
+    const projectSubtypeSelect = document.getElementById('projectSubtype');
     const projectType = this.value;
 
     // Clear existing options
-    shapeTypeSelect.innerHTML = '';
+    projectSubtypeSelect.innerHTML = '';
 
-    // Add shape type options based on project type
     switch (projectType) {
-        case 'BDM':
-            shapeTypeSelect.innerHTML = '<option value="rectangle">Rectangle</option>';
+        case 'BD-M': case 'BD-M/R': case 'BD-R':
+            projectSubtypeSelect.innerHTML = '<option value="" selected disabled hidden>choose project subtype</option>'
+                                            + '<option value="IO1">IO1 - Inside opening 1D</option>'
+                                            + '<option value="IO2">IO2 - Inside opening 2D</option>'
+                                            + '<option value="OC1">OC1 - Outside casing 1D</option>'
+                                            + '<option value="OC2">OC2 - Outside casing 2D</option>';
             break;
-        case 'BR':
-            shapeTypeSelect.innerHTML = '<option value="rectangle">Rectangle</option>' + '<option value="rectangle_oval">Rectangle with oval</option>';
-            break;
-        case 'CL':
-            shapeTypeSelect.innerHTML = '<option value="rectangle">Rectangle</option>' + '<option value="rectangle_oval">Rectangle with oval</option>' + '<option value="rectangle_rect">Rectangle with rectangle</option>';
+        case "CL": case "FCH": case "SWG": case "SWG-2STD": case "TLSC-BFLD": case "TLSCP":
+            projectSubtypeSelect.innerHTML = '<option value="" selected disabled hidden>choose project subtype</option>'
+                                            + '<option value="CUS">CUS - Custom type'
+                                            + '<option value="M1">M1 - 1 module</option>'
+                                            + '<option value="M2">M2 - 2 modules</option>'
+                                            + '<option value="M3">M3 - 3 modules</option>'
+                                            + '<option value="M4">M4 - 4 modules</option>'
+                                            + '<option value="M5">M5 - 5 modules</option>'
+                                            + '<option value="M6">M6 - 6 modules</option>'
+                                            + '<option value="M7">M7 - 7 modules</option>';
             break;
         default:
-            // Default options for other project types
+            projectSubtypeSelect.innerHTML = '<option value="noneSubtype">none</option>';
+            break;
+    }})
+
+// Function to dynamically update handle options based on project type selection
+document.getElementById('projectType').addEventListener('change', function () {
+    const handleTypeSelect = document.getElementById('handleType');
+    const projectType = this.value;
+
+    // Clear existing options
+    handleTypeSelect.innerHTML = '';
+
+    switch (projectType) {
+        case 'FCH': case 'SWG':
+            handleTypeSelect.innerHTML = '<option value="" selected disabled hidden>choose handle type</option>'
+                                            + '<option value="L">L - latch</option>'
+                                            + '<option value="B">B - b-2-b</option>'
+                                            + '<option value="G12">G12 - glass 12"</option>'
+                                            + '<option value="G24">G24 - glass 24"</option>'
+                                            + '<option value="G48">G48 - glass 48"</option>'
+                                            + '<option value="CUS">CUS - custom</option>'
+                                            + '<option value="NO">NO - none</option>';
+            break;
+        default:
+            handleTypeSelect.innerHTML = '<option value="defaultHandle">default</option>';
+            break;
+    }})
+
+// Function to dynamically update color options based on project type selection
+document.getElementById('projectType').addEventListener('change', function () {
+    const colorSelect = document.getElementById('color');
+    const projectType = this.value;
+
+    // Clear existing options
+    colorSelect.innerHTML = '';
+
+    switch (projectType) {
+        case 'BD-M': case 'BD-M/R': case 'BD-R': case 'CL': case 'FCH':
+        // case 'FRL': case 'MIX': case 'PIV': case 'SWG': case 'TLSC-BFLD':
+        // case 'TLSCP': case 'TTBD': case 'WINDOW': case 'WOOD': case 'XO':
+        // case 'XOOX': case 'XOX':
+            colorSelect.innerHTML = '<option value="" selected disabled hidden>choose color</option>'
+                                            + '<option value="C">C - Clear</option>'
+                                            + '<option value="M">M - Milky</option>'
+                                            + '<option value="B">B - Black</option>'
+                                            + '<option value="Ls">Ls - Mirror 1/4"</option>'
+                                            + '<option value="Mmm">Mmm - MIX-Mirror/Milky</option>'
+                                            + '<option value="Lb">Lb- Mirror 3/16</option>'
+                                            + '<option value="LAM">LAM - Laminate</option>'
+                                            + '<option value="CUS">CUS - Custom</option>'
+                                            + '<option value="SG">SG - Satin Gl. 1/4"</option>'
+                                            + '<option value="TIN">TIN - Tinted</option>'
+                                            + '<option value="spClVi">spClVi - Clear Laminate (Vinyl/PCV)</option>';
+            break;
+        default:
+            colorSelect.innerHTML = '<option value="defaultColor">default</option>';
             break;
     }})
 
