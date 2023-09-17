@@ -85,6 +85,7 @@ document.getElementById('projectType').addEventListener('change', function () {
     switch (projectType) {
         case 'BD-M': case 'BD-M/R': case 'BD-R':
             projectSubtypeSelect.innerHTML = '<option value="" selected disabled hidden>choose project subtype</option>'
+                                            + '<option value="CUS">CUS - Custom type'
                                             + '<option value="IO1">IO1 - Inside opening 1D</option>'
                                             + '<option value="IO2">IO2 - Inside opening 2D</option>'
                                             + '<option value="OC1">OC1 - Outside casing 1D</option>'
