@@ -131,20 +131,20 @@ document.getElementById('projectType').addEventListener('change', function () {
             break;
     }})
 
-// Function to dynamically update color options based on project type selection
+// Function to dynamically update material options based on project type selection
 document.getElementById('projectType').addEventListener('change', function () {
-    const colorSelect = document.getElementById('color');
+    const materialSelect = document.getElementById('panel-material');
     const projectType = this.value;
 
     // Clear existing options
-    colorSelect.innerHTML = '';
+    materialSelect.innerHTML = '';
 
     switch (projectType) {
         case 'BD-M': case 'BD-M/R': case 'BD-R': case 'CL': case 'FCH':
-        // case 'FRL': case 'MIX': case 'PIV': case 'SWG': case 'TLSC-BFLD':
-        // case 'TLSCP': case 'TTBD': case 'WINDOW': case 'WOOD': case 'XO':
-        // case 'XOOX': case 'XOX':
-            colorSelect.innerHTML = '<option value="" selected disabled hidden>choose color</option>'
+        case 'FRL': case 'MIX': case 'PIV': case 'SWG': case 'TLSC-BFLD':
+        case 'TLSCP': case 'TTBD': case 'WINDOW': case 'WOOD': case 'XO':
+        case 'XOOX': case 'XOX':
+        materialSelect.innerHTML = '<option value="" selected disabled hidden>choose material</option>'
                                             + '<option value="C">C - Clear</option>'
                                             + '<option value="M">M - Milky</option>'
                                             + '<option value="B">B - Black</option>'
@@ -158,7 +158,39 @@ document.getElementById('projectType').addEventListener('change', function () {
                                             + '<option value="spClVi">spClVi - Clear Laminate (Vinyl/PCV)</option>';
             break;
         default:
-            colorSelect.innerHTML = '<option value="defaultColor">default</option>';
+            materialSelect.innerHTML = '<option value=noneMaterialFirst">none</option>';
+            break;
+    }})
+
+// Function to dynamically update second side material options based on project type selection
+document.getElementById('projectType').addEventListener('change', function () {
+    const materialSelect = document.getElementById('panel-material-second');
+    const projectType = this.value;
+
+    // Clear existing options
+    materialSelect.innerHTML = '';
+
+    switch (projectType) {
+        case 'BD-M': case 'BD-M/R': case 'BD-R': case 'CL': case 'FCH':
+        case 'FRL': case 'MIX': case 'PIV': case 'SWG': case 'TLSC-BFLD':
+        case 'TLSCP': case 'TTBD': case 'WINDOW': case 'WOOD': case 'XO':
+        case 'XOOX': case 'XOX':
+        materialSelect.innerHTML = '<option value="" selected disabled hidden>choose material</option>'
+                                            + '<option value="same">Same as first side</option>'
+                                            + '<option value="C">C - Clear</option>'
+                                            + '<option value="M">M - Milky</option>'
+                                            + '<option value="B">B - Black</option>'
+                                            + '<option value="Ls">Ls - Mirror 1/4"</option>'
+                                            + '<option value="Mmm">Mmm - MIX-Mirror/Milky</option>'
+                                            + '<option value="Lb">Lb- Mirror 3/16</option>'
+                                            + '<option value="LAM">LAM - Laminate</option>'
+                                            + '<option value="CUS">CUS - Custom</option>'
+                                            + '<option value="SG">SG - Satin Gl. 1/4"</option>'
+                                            + '<option value="TIN">TIN - Tinted</option>'
+                                            + '<option value="spClVi">spClVi - Clear Laminate (Vinyl/PCV)</option>';
+            break;
+        default:
+            materialSelect.innerHTML = '<option value="noneMaterialSecond">none</option>';
             break;
     }})
 

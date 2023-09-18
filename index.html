@@ -11,12 +11,14 @@
 </head>
 <body>
     <div class="container">
+        
         <header>
             <h1>Door Making App</h1>
         </header>
 
-        <!-- Form with two columns and rows -->
+        <!-- First form -->
         <section class="first-form">
+            
             <form class="door-form">
                 <!-- First Column -->
                 <div class="form-column">
@@ -71,22 +73,6 @@
                     <div class="form-group">
                         <label for="country">Country</label>
                         <input type="text" id="country" name="country" placeholder="Country" required>
-                    </div>
-
-                    <!-- Expected installation date -->
-                    <div class="form-group">
-                        <label for="expectedInstallation">Expected Installation Date</label>
-                        <div class="radio-group">
-                            <label class="radio-label" style="font-weight:normal">
-                                <input type="radio" id="flexibleInstallation" name="expectedInstallation" value="flexible" required>
-                                Flexible
-                            </label>
-                            <label class="radio-label" style="font-weight:normal">
-                                <input type="radio" id="fixedInstallation" name="expectedInstallation" value="fixed" required>
-                                Fixed
-                            </label>
-                        </div>
-                        <input type="date" id="installationDate" name="installationDate" required>
                     </div>
 
                 </div>
@@ -160,37 +146,66 @@
                                 <input type="radio" name="shapeType" value="rectangle_rect" />
                                 <img src="./assets/img/shape_rect_rect.png" alt="Rectangular with Rectangular Topping" style="width:75px; height:auto;"/>
                             </label>
+                            <label class="image-option">
+                                <input type="radio" name="shapeType" value="rectangle_triangle" />
+                                <img src="./assets/img/shape_rect_trial.png" alt="Rectangular with Triangular Topping" style="width:75px; height:auto;"/>
+                            </label>
                         </div>
                     </div>
+
+                </div>
+
+                <!-- Expected installation date -->
+                <div class="form-group">
+                    <label for="expectedInstallation">Expected Installation Date</label>
+                    <div class="radio-group">
+                        <label class="radio-label" style="font-weight:normal">
+                            <input type="radio" id="flexibleInstallation" name="expectedInstallation" value="flexible" required>
+                            Flexible
+                        </label>
+                        <label class="radio-label" style="font-weight:normal">
+                            <input type="radio" id="fixedInstallation" name="expectedInstallation" value="fixed" required>
+                            Fixed
+                        </label>
+                    </div>
+                    <input type="date" id="installationDate" name="installationDate" required>
                 </div>
 
             </form>
+
             <div class="form-group">
                 <button type="reset" id="clearFirstForm">Clear</button>
             </div>
+
         </section>
 
         <!-- Photos and Dimensions Section -->
         <section class="photos-section">
+
+            <!-- Photos of the place -->
             <div class="photo-option">
                 <label for="photoOption"><b>Add photo of the place</b></label>
                 <input type="file" id="photoOption" accept="image/*" multiple>
                 <div class="image-preview"></div>
             </div>
 
+            <!-- Photos of the dimensions -->
             <div class="photo-option">
                 <label for="photoOptionDimensions"><b>Add photo of the dimensions</b></label>
                 <input type="file" id="photoOptionDimensions" accept="image/*" multiple>
                 <div class="image-preview"></div>
             </div>
 
+            <!-- Redirection to dimensoning form -->
             <div class="photo-option">
                 <a href="./dimensioning_form.html">Click to open dimensioning form</a>
             </div>
+
         </section>
 
-        <!-- Second part -->
+        <!-- Second Form -->
         <section class="second-form">
+
             <form class="door-form-second">
                 <!-- First Column -->
                 <div class="form-column">
@@ -202,7 +217,69 @@
                         </select>
                     </div>
 
-                    <!-- Commercial -->
+                    <!-- Doral coating (color) -->
+                    <div class="form-group">
+                        <label for="color">Doral coating (color)</label>
+                        <select id="color" name="color" required>
+                            <option value="" selected disabled hidden>choose doral coating color</option>
+                            <option value="custom">custom</option>
+                            <option value="black">black</option>
+                            <option value="white">white</option>
+                            <option value="silver">silver</option>
+                            <option value="wood">wood</option>
+                        </select>
+                    </div>
+
+                    <!-- Panel material -->
+                    <div class="form-group">
+                        <label for="panel-material">Panel material</label>
+                        <select id="panel-material" name="panel-material" required>
+                            <option value="" selected disabled hidden>choose project type first</option>
+                        </select>
+                    </div>
+
+                    <!-- Panel material second side -->
+                    <div class="form-group">
+                        <label for="panel-material-second">Panel Material Second Side</label>
+                        <select id="panel-material-second" name="panel-material-second" required>
+                            <option value="" selected disabled hidden>choose project type first</option>
+                        </select>
+                    </div>
+
+                    <!-- Decors -->
+                    <div class="form-group">
+                        <label for="decors">Decors</label>
+                        <select id="decors" name="decors" required>
+                            <option value="" selected disabled hidden>choose decors</option>
+                            <option value="CUSTOM">CUSTOM</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="FLAT18">FLAT18</option>
+                        </select>
+                    </div>
+
+                    <!-- Transome options -->
+                    <div class="form-group">
+                        <label for="transome">Transome options</label>
+                        <select id="transome" name="transome" required>
+                            <option value="" selected disabled hidden>choose transome</option>
+                            <option value="CUS">CUS - custom</option>
+                            <option value="SQ">SQ - square</option>
+                            <option value="ARC">ARC - arched</option>
+                            <option value="2x4S">2x4 SQ</option>
+                            <option value="2X4A">2x4 ARC</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- Second Column -->
+                <div class="form-column">
+                    <!-- Commercial (yes/no)-->
                     <div class="form-group">
                         <label for="commercial">Commercial (yes/no)</label>
                         <div class="radio-group">
@@ -217,42 +294,6 @@
                         </div>
                     </div>
 
-                    <!-- Color -->
-                    <div class="form-group">
-                        <label for="color">Doral coating (color)</label>
-                        <select id="color" name="color" required>
-                            <option value="" selected disabled hidden>choose project type first</option>
-                        </select>
-                    </div>
-
-                </div>
-
-                <!-- Second Column -->
-                <div class="form-column">
-                    <!-- Panel material -->
-                    <div class="form-group">
-                        <label for="panel-material">Panel material</label>
-                        <div class="radio-group">
-                            <label class="radio-label" style="font-weight:normal">
-                                <input type="radio" id="full" name="panel-material" value="full" required>
-                                full
-                            </label>
-                            <label class="radio-label" style="font-weight:normal">
-                                <input type="radio" id="one-side" name="panel-material" value="one-side" required>
-                                one side
-                            </label>
-                        </div>
-                        <select id="panel-material" name="panel-material" required>
-                            <option value="TODO">TODO</option>
-                        </select>
-                    </div>
-
-                    <!-- Decors -->
-                    <div class="form-group">
-                        <label for="panel-material-second">Panel Material (second side)</label>
-                        <input type="text" id="panel-material-second" name="panel-material-second" placeholder="Panel Material (second side)">
-                    </div>
-                    
                     <!-- Construction Works (yes/no) -->
                     <div class="form-group">
                         <label for="construction-works">Construction Works (yes/no)</label>
@@ -267,52 +308,51 @@
                             </label>
                         </div>
                     </div>
-                
-                    <!-- Construction Works Description -->
-                    <div class="form-group">
-                        <label for="construction-works-description">Construction Works Description</label>
-                        <input type="text" id="construction-works-description" name="construction-works-description" placeholder="Construction Works Description">
-                    </div>
+                    
+                    <!-- Construction works comments-->
+                    <section class="constructionWorks-comments">
+                        <form class="constructionWorks-comments-form">
+                            <div class="form-group">
+                                <textarea id="constructionWorks" name="constructionWorks" rows="5" placeholder="Enter your construction works comments here"></textarea>
+                            </div>
+                        </form>
+                    </section>
 
-                    <!-- Decors -->
-                    <div class="form-group">
-                        <label for="decors">Decors</label>
-                        <select id="decors" name="decors" required>
-                            <option value="TODO">TODO</option>
-                        </select>
-                    </div>
                 </div>
+
             </form>
 
             <div class="form-group">
                 <button type="reset" id="clearSecondForm">Clear</button>
             </div>
+
         </section>
 
         <!-- Price form -->
         <section class="third-form">
             <form class="door-form-third">
-                <div class="form-column">
+                
                     <!-- Pre-paid Amount -->
                     <div class="form-group">
                         <label for="pre-paid-amount">Pre-paid Amount</label>
-                        <input type="text" id="pre-paid-amount" name="pre-paid-amount" placeholder="pre-paid amount">
+                        <input type="text" id="pre-paid-amount" name="pre-paid-amount" placeholder="Pre-paid">
                     </div>
-                </div>
-                <div class="form-column">
+                
                     <!-- Price Tag -->
                     <div class="form-group">
                         <label for="price-tag">Price Tag</label>
                         <input type="text" id="price-tag" name="price-tag" placeholder="Price Tag">
                     </div>
-                </div>
+                
             </form>
 
             <div class="form-group">
                 <button type="reset" id="clearThirdForm">Clear</button>
             </div>
+
         </section>
 
+        <!-- Installation comments -->
         <section class="install-comments">
             <form class="install-comments-form">
                 <div class="form-group">
@@ -322,16 +362,13 @@
                     <button type="reset" id="clearInstallComments">Clear</button>
                 </div>
             </form>
-
-            <!-- Buttons Section -->
-        
         </section>
         
-        <!-- Buttons Section -->
-    <section class="buttons-section">
-        <button id="saveAsDraftButton" class="grey-button">Save as Draft</button>
-        <button id="submitButton" class="green-button">Submit</button>
-    </section>
+        <!-- Save/submit Buttons Section -->
+        <section class="buttons-section">
+            <button id="saveAsDraftButton" class="grey-button">Save as Draft</button>
+            <button id="submitButton" class="green-button">Submit</button>
+        </section>
 
         <!-- JS script -->
         <script src="./assets/script/script.js"></script>
