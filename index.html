@@ -10,7 +10,7 @@
 
 </head>
 <body>
-    <div class="container">
+    <div class="container"  >
         
         <header>
             <h1>Door Making App</h1>
@@ -18,8 +18,8 @@
 
         <!-- First form -->
         <section class="first-form">
-            
-            <form class="door-form">
+            <h3>1st Form</h3>
+            <form class="door-form" id="form1">
                 <!-- First Column -->
                 <div class="form-column">
                     <!-- Client Name -->
@@ -127,6 +127,19 @@
                         <label for="projectSubtype">Project subtype</label>
                         <select id="projectSubtype" name="projectSubtype" required>
                             <option value="" selected disabled hidden>choose project type first</option>
+                            <option value="CUS" hidden>CUS - Custom type</option>
+                            <option value="noneSubtype" hidden>none</option>
+                            <option value="IO1" hidden>IO1 - Inside opening 1D</option>
+                            <option value="IO2" hidden>IO2 - Inside opening 2D</option>
+                            <option value="OC1" hidden>OC1 - Outside casing 1D</option>
+                            <option value="OC2" hidden>OC2 - Outside casing 2D</option>
+                            <option value="M1" hidden>M1 - 1 module</option>
+                            <option value="M2" hidden>M2 - 2 modules</option>
+                            <option value="M3" hidden>M3 - 3 modules</option>
+                            <option value="M4" hidden>M4 - 4 modules</option>
+                            <option value="M5" hidden>M5 - 5 modules</option>
+                            <option value="M6" hidden>M6 - 6 modules</option>
+                            <option value="M7" hidden>M7 - 7 modules</option>
                         </select>
                     </div>
                                         
@@ -206,7 +219,8 @@
         <!-- Second Form -->
         <section class="second-form">
 
-            <form class="door-form-second">
+            <form class="door-form-second" id="form2">
+                <h3>2nd Form</h3>
                 <!-- First Column -->
                 <div class="form-column">
                     <!-- Handle Type -->
@@ -214,6 +228,14 @@
                         <label for="handleType">Handle Type</label>
                         <select id="handleType" name="handleType" required>
                             <option value="" selected disabled hidden>choose project type first</option>
+                            <option value="defaultHandle" hidden>default</option>
+                            <option value="L" hidden>L - latch</option>
+                            <option value="B" hidden>B - b-2-b</option>'
+                            <option value="G12" hidden>G12 - glass 12"</option>
+                            <option value="G24" hidden>G24 - glass 24"</option>
+                            <option value="G48" hidden>G48 - glass 48"</option>
+                            <option value="CUS" hidden>CUS - custom</option>
+                            <option value="NO" hidden>NO - none</option>
                         </select>
                     </div>
 
@@ -232,17 +254,42 @@
 
                     <!-- Panel material -->
                     <div class="form-group">
-                        <label for="panel-material">Panel material</label>
-                        <select id="panel-material" name="panel-material" required>
+                        <label for="panelMaterial">Panel material</label>
+                        <select id="panelMaterial" name="panelMaterial" required>
                             <option value="" selected disabled hidden>choose project type first</option>
+                            <option value="noneMaterialFirst" hidden>none</option>
+                            <option value="C" hidden>C - Clear</option>
+                            <option value="M" hidden>M - Milky</option>
+                            <option value="B" hidden>B - Black</option>
+                            <option value="Ls" hidden>Ls - Mirror 1/4"</option>
+                            <option value="Mmm" hidden>Mmm - MIX-Mirror/Milky</option>
+                            <option value="Lb" hidden>Lb- Mirror 3/16</option>
+                            <option value="LAM" hidden>LAM - Laminate</option>
+                            <option value="CUS" hidden>CUS - Custom</option>
+                            <option value="SG" hidden>SG - Satin Gl. 1/4"</option>
+                            <option value="TIN" hidden>TIN - Tinted</option>
+                            <option value="spClVi" hidden>spClVi - Clear Laminate (Vinyl/PCV)</option>
                         </select>
                     </div>
 
                     <!-- Panel material second side -->
                     <div class="form-group">
-                        <label for="panel-material-second">Panel Material Second Side</label>
-                        <select id="panel-material-second" name="panel-material-second" required>
+                        <label for="panelMaterialSecond">Panel Material Second Side</label>
+                        <select id="panelMaterialSecond" name="panelMaterialSecond" required>
                             <option value="" selected disabled hidden>choose project type first</option>
+                            <option value="same" hidden>Same as first side</option>
+                            <option value="noneMaterialSecond" hidden>none</option>
+                            <option value="C" hidden>C - Clear</option>
+                            <option value="M" hidden>M - Milky</option>
+                            <option value="B" hidden>B - Black</option>
+                            <option value="Ls" hidden>Ls - Mirror 1/4"</option>
+                            <option value="Mmm" hidden>Mmm - MIX-Mirror/Milky</option>
+                            <option value="Lb" hidden>Lb- Mirror 3/16</option>
+                            <option value="LAM" hidden>LAM - Laminate</option>
+                            <option value="CUS" hidden>CUS - Custom</option>
+                            <option value="SG" hidden>SG - Satin Gl. 1/4"</option>
+                            <option value="TIN" hidden>TIN - Tinted</option>
+                            <option value="spClVi" hidden>spClVi - Clear Laminate (Vinyl/PCV)</option>
                         </select>
                     </div>
 
@@ -296,14 +343,14 @@
 
                     <!-- Construction Works (yes/no) -->
                     <div class="form-group">
-                        <label for="construction-works">Construction Works (yes/no)</label>
+                        <label for="constructionWorks">Construction Works (yes/no)</label>
                         <div class="radio-group">
                             <label class="radio-label" style="font-weight:normal">
-                                <input type="radio" id="yes" name="construction-works" value="yes" required>
+                                <input type="radio" id="yes" name="constructionWorks" value="yes" required>
                                 yes
                             </label>
                             <label class="radio-label" style="font-weight:normal">
-                                <input type="radio" id="no" name="construction-works" value="no" required>
+                                <input type="radio" id="no" name="constructionWorks" value="no" required>
                                 no
                             </label>
                         </div>
@@ -313,7 +360,7 @@
                     <section class="constructionWorks-comments">
                         <form class="constructionWorks-comments-form">
                             <div class="form-group">
-                                <textarea id="constructionWorks" name="constructionWorks" rows="5" placeholder="Enter your construction works comments here"></textarea>
+                                <textarea id="constructionWorksComments" name="constructionWorksComments" rows="5" placeholder="Enter your construction works comments here"></textarea>
                             </div>
                         </form>
                     </section>
@@ -330,18 +377,19 @@
 
         <!-- Price form -->
         <section class="third-form">
-            <form class="door-form-third">
+            <h3>3rd form</h3>
+            <form class="door-form-third" id="form3">
                 
                     <!-- Pre-paid Amount -->
                     <div class="form-group">
-                        <label for="pre-paid-amount">Pre-paid Amount</label>
-                        <input type="text" id="pre-paid-amount" name="pre-paid-amount" placeholder="Pre-paid">
+                        <label for="prePaidAmount">Pre-paid Amount</label>
+                        <input type="text" id="prePaidAmount" name="prePaidAmount" placeholder="Pre-paid">
                     </div>
                 
                     <!-- Price Tag -->
                     <div class="form-group">
-                        <label for="price-tag">Price Tag</label>
-                        <input type="text" id="price-tag" name="price-tag" placeholder="Price Tag">
+                        <label for="priceTag">Price Tag</label>
+                        <input type="text" id="priceTag" name="priceTag" placeholder="Price Tag">
                     </div>
                 
             </form>
@@ -354,7 +402,8 @@
 
         <!-- Installation comments -->
         <section class="install-comments">
-            <form class="install-comments-form">
+            <h3>Comments section</h3>
+            <form class="install-comments-form" id="form4">
                 <div class="form-group">
                     <textarea id="installComments" name="installComments" rows="5" placeholder="Enter your installation comments here"></textarea>
                 </div>
@@ -363,12 +412,10 @@
                 </div>
             </form>
         </section>
-        
-        <!-- Save/submit Buttons Section -->
-        <section class="buttons-section">
-            <button id="saveAsDraftButton" class="grey-button">Save as Draft</button>
-            <button id="submitButton" class="green-button">Submit</button>
-        </section>
+
+        <!-- Buttons for saving and importing data -->
+        <button id="saveData">Save Data</button>
+        <input type="file" id="importData" accept=".csv" />
 
         <!-- JS script -->
         <script src="./assets/script/script.js"></script>

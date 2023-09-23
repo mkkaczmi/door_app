@@ -1,3 +1,14 @@
+// Function to show a confirmation message when the user tries to leave the page
+function confirmLeavePage(e) {
+    // Display a confirmation message
+    const confirmationMessage = 'WARNING! All unsaved data will be lost!';
+    (e || window.event).returnValue = confirmationMessage;
+    return confirmationMessage;
+}
+
+// Attach the confirmLeavePage function to the beforeunload event
+window.addEventListener('beforeunload', confirmLeavePage);
+
 // Add a click event listener to the "Get Current Location" button
 document.getElementById('getLocation').addEventListener('click', getCurrentLocation);
 
@@ -85,7 +96,7 @@ document.getElementById('projectType').addEventListener('change', function () {
     switch (projectType) {
         case 'BD-M': case 'BD-M/R': case 'BD-R':
             projectSubtypeSelect.innerHTML = '<option value="" selected disabled hidden>choose project subtype</option>'
-                                            + '<option value="CUS">CUS - Custom type'
+                                            + '<option value="CUS">CUS - Custom type</option>'
                                             + '<option value="IO1">IO1 - Inside opening 1D</option>'
                                             + '<option value="IO2">IO2 - Inside opening 2D</option>'
                                             + '<option value="OC1">OC1 - Outside casing 1D</option>'
@@ -133,7 +144,7 @@ document.getElementById('projectType').addEventListener('change', function () {
 
 // Function to dynamically update material options based on project type selection
 document.getElementById('projectType').addEventListener('change', function () {
-    const materialSelect = document.getElementById('panel-material');
+    const materialSelect = document.getElementById('panelMaterial');
     const projectType = this.value;
 
     // Clear existing options
@@ -158,13 +169,13 @@ document.getElementById('projectType').addEventListener('change', function () {
                                             + '<option value="spClVi">spClVi - Clear Laminate (Vinyl/PCV)</option>';
             break;
         default:
-            materialSelect.innerHTML = '<option value=noneMaterialFirst">none</option>';
+            materialSelect.innerHTML = '<option value="noneMaterialFirst">none</option>';
             break;
     }})
 
 // Function to dynamically update second side material options based on project type selection
 document.getElementById('projectType').addEventListener('change', function () {
-    const materialSelect = document.getElementById('panel-material-second');
+    const materialSelect = document.getElementById('panelMaterialSecond');
     const projectType = this.value;
 
     // Clear existing options
@@ -262,57 +273,177 @@ function closeLargerImage(overlay) {
     }
 }
 
-// Function to convert form data to CSV format
-function convertFormDataToCSV(formData) {
-    const csvRows = [];
 
-    for (const pair of formData.entries()) {
-        csvRows.push(`${pair[0]}, ${pair[1]}`);
-    }
+// Initialize data objects for each form
+let formData1 = {};
+let formData2 = {};
+let formData3 = {};
+let formData4 = {};
 
-    return csvRows.join('\n');
+// Function to serialize form data to CSV
+function serializeToCSV(data) {
+    return Object.keys(data)
+        .map(key => `${key},${data[key]}`)
+        .join('\n');
 }
 
-
-// Function to trigger CSV download
-function downloadCSV(csvData, fileName) {
-    const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = fileName;
-    link.click();
+// Function to parse CSV data into an object
+function parseCSVToObject(csvData) {
+    const lines = csvData.trim().split('\n');
+    const data = {};
+    lines.forEach(line => {
+        const [key, value] = line.split(',');
+        data[key] = value;
+    });
+    return data;
 }
 
-// Save as Draft button click event
-document.getElementById('saveAsDraftButton').addEventListener('click', () => {
-    // Collect form data
-    const formData = new FormData(document.querySelector('.door-form'));
-    const csvData = convertFormDataToCSV(formData);
+// Function to save data as a CSV file
+function saveDataToCSV(data, fileName) {
+    const csvContent = serializeToCSV(data);
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
 
-    // Save as draft
-    downloadCSV(csvData, 'draft.csv');
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+// Function to populate form fields from an object
+function populateFormFromObject(form, data) {
+    Object.keys(data).forEach(key => {
+        const element = form.querySelector(`#${key}`);
+        if (element) {
+            element.value = data[key];
+        }
+    });
+}
+
+// Save Data button click event
+document.getElementById('saveData').addEventListener('click', function () {
+    // Serialize form data and save as CSV
+
+    // FIRST FORM, FIRST COLUMN
+    formData1.clientName = document.getElementById('clientName').value;
+    formData1.clientEmail = document.getElementById('clientEmail').value;
+    formData1.clientPhone = document.getElementById('clientPhone').value;
+    formData1.street = document.getElementById('street').value;
+    formData1.city = document.getElementById('city').value;
+    formData1.state = document.getElementById('state').value;
+    formData1.postalCode = document.getElementById('postalCode').value;
+    formData1.country = document.getElementById('country').value;
+
+    // FIRST FORM, SECOND COLUMN
+    formData1.TASD_rep = document.getElementById('TASD_rep').value;
+    formData1.projectCode = document.getElementById('projectCode').value;
+    formData1.projectType = document.getElementById('projectType').value;
+    
+    var select = document.getElementById('projectSubtype');
+    formData1.projectSubtype = select.options[select.selectedIndex].value;
+
+    formData1.shapeType = document.querySelector('input[name="shapeType"]:checked').value;
+    formData1.expectedInstallation = document.querySelector('input[name="expectedInstallation"]:checked').value;
+    formData1.installationDate = document.getElementById('installationDate').value;
+
+
+    // SECOND FORM, FIRST COLUMN
+    var select = document.getElementById('handleType');
+    formData2.handleType = select.options[select.selectedIndex].value;
+    var select = document.getElementById('color');
+    formData2.color = select.options[select.selectedIndex].value;
+    var select = document.getElementById('panelMaterial');
+    formData2.panelMaterial = select.options[select.selectedIndex].value;
+    var select = document.getElementById('panelMaterialSecond');
+    formData2.panelMaterialSecond = select.options[select.selectedIndex].value;
+    var select = document.getElementById('decors');
+    formData2.decors = select.options[select.selectedIndex].value;
+    var select = document.getElementById('transome');
+    formData2.transome = select.options[select.selectedIndex].value;
+
+    // SECOND FORM, SECOND COLUMN
+    formData2.commercial = document.querySelector('input[name="commercial"]:checked').value;
+    formData2.constructionWorks = document.querySelector('input[name="constructionWorks"]:checked').value;
+
+    formData2.constructionWorksComments = document.getElementById('constructionWorksComments').value;
+
+
+    // THIRD FORM
+    formData3.prePaidAmount = document.getElementById('prePaidAmount').value;
+    formData3.priceTag = document.getElementById('priceTag').value;
+
+    // COMMENTS
+    formData4.installComments = document.getElementById('installComments').value;
+
+    fileName = document.getElementById('projectCode').value;
+
+    // Save each form's data as a separate CSV file
+    saveDataToCSV(formData1, fileName + '_1stForm.csv');
+    saveDataToCSV(formData2, fileName + '_2ndForm.csv');
+    saveDataToCSV(formData3, fileName + '_3rdForm.csv');
+    saveDataToCSV(formData4, fileName + '_comments.csv');
 });
 
-// Submit button click event
-document.getElementById('submitButton').addEventListener('click', () => {
-    // Collect form data
-    const formData = new FormData(document.querySelector('.door-form'));
+// Import Data input change event
+document.getElementById('importData').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const csvData = e.target.result;
+            const parsedData = parseCSVToObject(csvData);
 
-    // Check if all required fields are filled
-    let isFormValid = true;
-    const requiredFields = ['clientName', 'street', 'city', 'state', 'postalCode', 'country', 'TASD_rep', 'projectCode', 'projectType', 'projectSubtype', 'shapeType', 'expectedInstallation', 'installationDate'];
-    
-    for (const field of requiredFields) {
-        if (!formData.get(field)) {
-            alert(`Please fill in the "${field}" field.`);
-            isFormValid = false;
-            break;
-        }
-    }
+            // Populate the first form's fields using parsedData
+            populateFormFromObject(document.getElementById('form1'), parsedData);
+            populateFormFromObject(document.getElementById('form2'), parsedData);
+            populateFormFromObject(document.getElementById('form3'), parsedData);
+            populateFormFromObject(document.getElementById('form4'), parsedData);
+            
+            // Handle radio buttons separately
+            const shapeType = parsedData.shapeType;
+            const expectedInstallation = parsedData.expectedInstallation;
+            const commercial = parsedData.commercial;
+            const constructionWorks = parsedData.constructionWorks;
 
-    if (isFormValid) {
-        // Convert and save as final
-        const csvData = convertFormDataToCSV(formData);
-        downloadCSV(csvData, 'final.csv');
+            if (shapeType) {
+                const shapeOptions = document.querySelectorAll('input[name="shapeType"]');
+                shapeOptions.forEach(option => {
+                    if (option.value === shapeType) {
+                        option.checked = true;
+                    }
+                });
+            }
+
+            if (expectedInstallation) {
+                const expectedInstallationOptions = document.querySelectorAll('input[name="expectedInstallation"]');
+                expectedInstallationOptions.forEach(option => {
+                    if (option.value === expectedInstallation) {
+                        option.checked = true;
+                    }
+                });
+            }
+
+            if (commercial) {
+                const commercialOptions = document.querySelectorAll('input[name="commercial"]');
+                commercialOptions.forEach(option => {
+                    if (option.value === commercial) {
+                        option.checked = true;
+                    }
+                });
+            }
+
+            if (constructionWorks) {
+                const constructionWorksOptions = document.querySelectorAll('input[name="constructionWorks"]');
+                constructionWorksOptions.forEach(option => {
+                    if (option.value === constructionWorks) {
+                        option.checked = true;
+                    }
+                });
+            }
+        };
+        reader.readAsText(file);
     }
 });
