@@ -382,9 +382,15 @@ document.getElementById('saveData').addEventListener('click', function () {
 
     // Save each form's data as a separate CSV file
     saveDataToCSV(formData1, fileName + '_1stForm.csv');
-    saveDataToCSV(formData2, fileName + '_2ndForm.csv');
-    saveDataToCSV(formData3, fileName + '_3rdForm.csv');
-    saveDataToCSV(formData4, fileName + '_comments.csv');
+    setTimeout(() => {
+        saveDataToCSV(formData2, fileName + '_2ndForm.csv');
+    }, 2000); // Delayed by 2 second (adjust as needed)
+    setTimeout(() => {
+        saveDataToCSV(formData3, fileName + '_3rdForm.csv');
+    }, 4000); // Delayed by 4 seconds (adjust as needed)
+    setTimeout(() => {
+        saveDataToCSV(formData4, fileName + '_comments.csv');
+    }, 6000); // Delayed by 6 seconds (adjust as needed)
 });
 
 // Import Data input change event
