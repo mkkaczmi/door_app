@@ -453,3 +453,37 @@ document.getElementById('importData').addEventListener('change', function (event
         reader.readAsText(file);
     }
 });
+
+window.jsPDF = window.jspdf.jsPDF;
+// Function to generate and save the PDF
+function generatePDF() {
+    // Create a new jsPDF instance
+    const doc = new jsPDF();
+
+    // Get form data and construct the content for the PDF
+    const formData = {
+        projectCode: document.getElementById('projectCode').value,
+        clientName: document.getElementById('clientName').value,
+        clientEmail: document.getElementById('clientEmail').value,
+        // Add other form fields here
+    };
+
+    // Construct the content for the PDF
+    const pdfContent = `
+        Project No. ${formData.projectCode}
+
+        Client Name: ${formData.clientName}
+        Client Email: ${formData.clientEmail}
+        // Add other form fields here
+    `;
+
+    // Add the content to the PDF document
+    doc.text(pdfContent, 20, 20);
+
+    // Save or download the PDF
+    doc.save('form_submission.pdf');
+}
+
+// Add an event listener to the "Submit" button
+document.getElementById('submit-button').addEventListener('click', generatePDF);
+
