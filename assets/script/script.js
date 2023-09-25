@@ -460,28 +460,74 @@ function generatePDF() {
     // Create a new jsPDF instance
     const doc = new jsPDF();
 
-    // Get form data and construct the content for the PDF
-    const formData = {
-        projectCode: document.getElementById('projectCode').value,
-        clientName: document.getElementById('clientName').value,
-        clientEmail: document.getElementById('clientEmail').value,
-        // Add other form fields here
-    };
-
+    projectCode = document.getElementById('projectCode').value;
+    var select = document.getElementById('projectSubtype');
+    projectSubtype = select.options[select.selectedIndex].value;
+    shapeType = document.querySelector('input[name="shapeType"]:checked').value;
+    expectedInstallation = document.querySelector('input[name="expectedInstallation"]:checked').value;
+    installationDate = document.getElementById('installationDate').value;
+    
+    var select = document.getElementById('handleType');
+    handleType = select.options[select.selectedIndex].value;
+    var select = document.getElementById('color');
+    color = select.options[select.selectedIndex].value;
+    var select = document.getElementById('panelMaterial');
+    panelMaterial = select.options[select.selectedIndex].value;
+    var select = document.getElementById('panelMaterialSecond');
+    panelMaterialSecond = select.options[select.selectedIndex].value;
+    var select = document.getElementById('decors');
+    decors = select.options[select.selectedIndex].value;
+    var select = document.getElementById('transome');
+    transome = select.options[select.selectedIndex].value;
+    commercial = document.querySelector('input[name="commercial"]:checked').value;
+    constructionWorks = document.querySelector('input[name="constructionWorks"]:checked').value;
+    constructionWorksComments = document.getElementById('constructionWorksComments').value;
     // Construct the content for the PDF
     const pdfContent = `
-        Project No. ${formData.projectCode}
+        Order No. ${projectCode}
 
-        Client Name: ${formData.clientName}
-        Client Email: ${formData.clientEmail}
-        // Add other form fields here
+
+        client name: ${document.getElementById('clientName').value}
+        client email: ${document.getElementById('clientEmail').value}
+        client phone number: ${document.getElementById('clientPhone').value}
+
+        street: ${document.getElementById('street').value}
+        city: ${document.getElementById('city').value}
+        state/province: ${document.getElementById('state').value}
+        postal code: ${document.getElementById('postalCode').value}
+        country: ${document.getElementById('country').value}
+
+        TASD representative: ${document.getElementById('TASD_rep').value}
+        project code: ${projectCode}
+        project type: ${document.getElementById('projectType').value}
+        project subtype: ${projectSubtype}
+        shape type: ${shapeType}
+        expected installation date: ${installationDate} ${expectedInstallation}
+
+        handle type: ${handleType}
+        doral coating (color): ${color}
+        panel material: ${panelMaterial}
+        panel material (second side): ${panelMaterialSecond}
+        decors: ${decors}
+        transome options: ${transome}
+        
+        commercial: ${commercial}
+        construction works: ${constructionWorks}
+        construction works comments: ${constructionWorksComments}
+
+        
+        pre-paid amount: $${document.getElementById('prePaidAmount').value}
+        price tag: $${document.getElementById('priceTag').value}
+
+
+        comments: ${document.getElementById('installComments').value}
     `;
 
     // Add the content to the PDF document
-    doc.text(pdfContent, 20, 20);
+    doc.text(pdfContent, 10, 20);
 
     // Save or download the PDF
-    doc.save('form_submission.pdf');
+    doc.save(projectCode + '.pdf');
 }
 
 // Add an event listener to the "Submit" button
