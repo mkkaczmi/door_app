@@ -598,7 +598,9 @@ async function generatePDF() {
     });
 
     // Save or download the PDF
-    doc.save(projectCode + '.pdf');
+    setTimeout(() => {
+        doc.save(projectCode + '.pdf');
+    }, 1000); // Delayed by 1 seconds (adjust as needed)
 }
 
 // Add an event listener to the "Submit" button
