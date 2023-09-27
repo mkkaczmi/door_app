@@ -11,6 +11,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.3/purify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.0/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
 </head>
 <body>
@@ -18,7 +21,7 @@
         
         <header>
             <h1>Door Making App</h1>
-            <p style="text-align:center">v1.0 Beta</p>
+            <p style="text-align:center">v1.1 Beta</p>
         </header>
 
         <!-- First form -->
@@ -153,7 +156,7 @@
                         <label for="shapeType">Shape Type</label>
                         <div class="image-options">
                             <label class="image-option">
-                                <input type="radio" name="shapeType" value="rectangle" />
+                                <input type="radio" name="shapeType" value="rectangle" checked/>
                                 <img src="./assets/img/shape_rect.png" alt="Rectangular" style="width:75px; height:auto;"/>
                             </label>
                             <label class="image-option">
@@ -178,7 +181,7 @@
                     <label for="expectedInstallation">Expected Installation Date</label>
                     <div class="radio-group">
                         <label class="radio-label" style="font-weight:normal">
-                            <input type="radio" id="flexibleInstallation" name="expectedInstallation" value="flexible" required>
+                            <input type="radio" id="flexibleInstallation" name="expectedInstallation" value="flexible" required checked>
                             Flexible
                         </label>
                         <label class="radio-label" style="font-weight:normal">
@@ -200,6 +203,11 @@
         <!-- Photos and Dimensions Section -->
         <section class="photos-section">
 
+            <!-- Redirection to dimensoning form -->
+            <div class="photo-option">
+                <a href="./dimensioning_form.html">Click to open dimensioning form</a>
+            </div>
+
             <!-- Photos of the place -->
             <div class="photo-option">
                 <label for="photoOption"><b>Add photo of the place</b></label>
@@ -212,11 +220,6 @@
                 <label for="photoOptionDimensions"><b>Add photo of the dimensions</b></label>
                 <input type="file" id="photoOptionDimensions" accept="image/*" multiple>
                 <div class="image-preview"></div>
-            </div>
-
-            <!-- Redirection to dimensoning form -->
-            <div class="photo-option">
-                <a href="./dimensioning_form.html">Click to open dimensioning form</a>
             </div>
 
         </section>
@@ -339,7 +342,7 @@
                                 yes
                             </label>
                             <label class="radio-label" style="font-weight:normal">
-                                <input type="radio" id="no" name="commercial" value="no" required>
+                                <input type="radio" id="no" name="commercial" value="no" required checked>
                                 no
                             </label>
                         </div>
@@ -354,7 +357,7 @@
                                 yes
                             </label>
                             <label class="radio-label" style="font-weight:normal">
-                                <input type="radio" id="no" name="constructionWorks" value="no" required>
+                                <input type="radio" id="no" name="constructionWorks" value="no" required checked>
                                 no
                             </label>
                         </div>

@@ -118,30 +118,6 @@ document.getElementById('projectType').addEventListener('change', function () {
             break;
     }})
 
-// Function to dynamically update handle options based on project type selection
-document.getElementById('projectType').addEventListener('change', function () {
-    const handleTypeSelect = document.getElementById('handleType');
-    const projectType = this.value;
-
-    // Clear existing options
-    handleTypeSelect.innerHTML = '';
-
-    switch (projectType) {
-        case 'FCH': case 'SWG':
-            handleTypeSelect.innerHTML = '<option value="" selected disabled hidden>choose handle type</option>'
-                                            + '<option value="L">L - latch</option>'
-                                            + '<option value="B">B - b-2-b</option>'
-                                            + '<option value="G12">G12 - glass 12"</option>'
-                                            + '<option value="G24">G24 - glass 24"</option>'
-                                            + '<option value="G48">G48 - glass 48"</option>'
-                                            + '<option value="CUS">CUS - custom</option>'
-                                            + '<option value="NO">NO - none</option>';
-            break;
-        default:
-            handleTypeSelect.innerHTML = '<option value="defaultHandle">default</option>';
-            break;
-    }})
-
 // Function to dynamically update material options based on project type selection
 document.getElementById('projectType').addEventListener('change', function () {
     const materialSelect = document.getElementById('panelMaterial');
@@ -384,13 +360,13 @@ document.getElementById('saveData').addEventListener('click', function () {
     saveDataToCSV(formData1, fileName + '_1stForm.csv');
     setTimeout(() => {
         saveDataToCSV(formData2, fileName + '_2ndForm.csv');
-    }, 2000); // Delayed by 2 second (adjust as needed)
+    }, 1000); // Delayed by 1 second (adjust as needed)
     setTimeout(() => {
         saveDataToCSV(formData3, fileName + '_3rdForm.csv');
-    }, 4000); // Delayed by 4 seconds (adjust as needed)
+    }, 2000); // Delayed by 2 seconds (adjust as needed)
     setTimeout(() => {
         saveDataToCSV(formData4, fileName + '_comments.csv');
-    }, 6000); // Delayed by 6 seconds (adjust as needed)
+    }, 3000); // Delayed by 3 seconds (adjust as needed)
 });
 
 // Import Data input change event
@@ -455,10 +431,24 @@ document.getElementById('importData').addEventListener('change', function (event
 });
 
 window.jsPDF = window.jspdf.jsPDF;
-// Function to generate and save the PDF
-function generatePDF() {
+// Function to generate and save the PDF and images
+async function generatePDF() {
     // Create a new jsPDF instance
     const doc = new jsPDF();
+
+    // Create a new JSZip instance
+    const zip = new JSZip();
+
+    // Define the maximum width and height for a single page
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+
+    // Create a table for adding content
+    const table = {
+        startY: 20, // Start the table at a specific Y position
+        tableWidth: pageWidth - 40, // Adjust for margins
+        showHead: false, // Hide table header
+    };
 
     projectCode = document.getElementById('projectCode').value;
     var select = document.getElementById('projectSubtype');
@@ -466,7 +456,7 @@ function generatePDF() {
     shapeType = document.querySelector('input[name="shapeType"]:checked').value;
     expectedInstallation = document.querySelector('input[name="expectedInstallation"]:checked').value;
     installationDate = document.getElementById('installationDate').value;
-    
+
     var select = document.getElementById('handleType');
     handleType = select.options[select.selectedIndex].value;
     var select = document.getElementById('color');
@@ -482,10 +472,9 @@ function generatePDF() {
     commercial = document.querySelector('input[name="commercial"]:checked').value;
     constructionWorks = document.querySelector('input[name="constructionWorks"]:checked').value;
     constructionWorksComments = document.getElementById('constructionWorksComments').value;
-    // Construct the content for the PDF
-    const pdfContent = `
-        Order No. ${projectCode}
 
+    // Construct the content for the PDF
+    const pdfContent = `Order No. ${projectCode}
 
         client name: ${document.getElementById('clientName').value}
         client email: ${document.getElementById('clientEmail').value}
@@ -510,21 +499,103 @@ function generatePDF() {
         panel material (second side): ${panelMaterialSecond}
         decors: ${decors}
         transome options: ${transome}
-        
+
         commercial: ${commercial}
         construction works: ${constructionWorks}
-        construction works comments: ${constructionWorksComments}
+        construction works comments (below):
+        ${constructionWorksComments}
 
-        
         pre-paid amount: $${document.getElementById('prePaidAmount').value}
         price tag: $${document.getElementById('priceTag').value}
 
+        comments (below):
+        ${document.getElementById('installComments').value}
 
-        comments: ${document.getElementById('installComments').value}
-    `;
+        IMAGES:`;
 
-    // Add the content to the PDF document
-    doc.text(pdfContent, 10, 20);
+    // Split the content into lines
+    const contentLines = doc.splitTextToSize(pdfContent, table.tableWidth);
+
+    // Check if the content fits on a single page
+    if (doc.y + contentLines.length * 10 > pageHeight) {
+        doc.addPage(); // Add a new page if the content doesn't fit
+    }
+
+    // Add the content to the table
+    table.body = contentLines.map(line => [line]);
+
+    // Add the table to the PDF
+    doc.autoTable(table);
+
+    // Get the image previews
+    const previewImages = document.querySelectorAll('.image-preview img');
+
+    // Initialize X and Y positions for images
+    let imageX = 20;
+    let imageY = doc.autoTable.previous.finalY + 10;
+
+    // Define the maximum image width and height
+    const maxImageWidth = (pageWidth - 40) / 2; // Two images in a row
+    const maxImageHeight = 100;
+
+    // Iterate through the image previews and add them to the PDF and zip file
+    let imagesInRow = 0;
+
+    for (const image of previewImages) {
+        // Check if the image fits in the current row
+        if (imageX + maxImageWidth <= pageWidth - 20) {
+            // Calculate the image height to maintain aspect ratio
+            const aspectRatio = image.width / image.height;
+            const imageHeight = maxImageWidth / aspectRatio;
+
+            // Add the image to the PDF with calculated width and height
+            doc.addImage(image, 'JPEG', imageX, imageY, maxImageWidth, imageHeight);
+
+            // Update positions for the next image in the same row
+            imageX += maxImageWidth + 10;
+            imagesInRow++;
+
+            // Check if the row is full (two images in a row)
+            if (imagesInRow >= 2) {
+                // Move to the next row
+                imageX = 20;
+                imageY += maxImageHeight + 10;
+                imagesInRow = 0;
+            }
+        } else {
+            // If the image doesn't fit in the current row, move to the next row
+            imageX = 20;
+            imageY += maxImageHeight + 10;
+
+            // Check if a new page is needed
+            if (imageY + maxImageHeight > pageHeight) {
+                doc.addPage();
+                imageY = 20;
+            }
+
+            // Calculate the image height to maintain aspect ratio
+            const aspectRatio = image.width / image.height;
+            const imageHeight = maxImageWidth / aspectRatio;
+
+            // Add the image to the PDF with calculated width and height
+            doc.addImage(image, 'JPEG', imageX, imageY, maxImageWidth, imageHeight);
+
+            // Update positions for the next image in the row
+            imageX += maxImageWidth + 10;
+            imagesInRow = 1;
+        }
+
+        // Load the image as binary data and add it to the zip file
+        const response = await fetch(image.src);
+        const blob = await response.blob();
+        const imageFileName = `image_${new Date().getTime()}.jpg`;
+        zip.file(imageFileName, blob);
+    }
+
+    // Generate the zip file and initiate the download
+    zip.generateAsync({ type: 'blob' }).then(function (blob) {
+        saveAs(blob, `${projectCode}_images.zip`);
+    });
 
     // Save or download the PDF
     doc.save(projectCode + '.pdf');
@@ -532,4 +603,3 @@ function generatePDF() {
 
 // Add an event listener to the "Submit" button
 document.getElementById('submit-button').addEventListener('click', generatePDF);
-
